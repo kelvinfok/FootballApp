@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D3E4C3029AEFA550052B4A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E4C2F29AEFA550052B4A6 /* AppDelegate.swift */; };
 		8D3E4C3229AEFA550052B4A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E4C3129AEFA550052B4A6 /* SceneDelegate.swift */; };
-		8D3E4C3429AEFA550052B4A6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E4C3329AEFA550052B4A6 /* ViewController.swift */; };
-		8D3E4C3729AEFA550052B4A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3E4C3529AEFA550052B4A6 /* Main.storyboard */; };
+		8D3E4C3429AEFA550052B4A6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E4C3329AEFA550052B4A6 /* HomeViewController.swift */; };
 		8D3E4C3A29AEFA550052B4A6 /* ios_football_app.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E4C3829AEFA550052B4A6 /* ios_football_app.xcdatamodeld */; };
 		8D3E4C3C29AEFA560052B4A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D3E4C3B29AEFA560052B4A6 /* Assets.xcassets */; };
 		8D3E4C3F29AEFA560052B4A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3E4C3D29AEFA560052B4A6 /* LaunchScreen.storyboard */; };
@@ -20,8 +19,7 @@
 		8D3E4C2C29AEFA550052B4A6 /* ios-football-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-football-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3E4C2F29AEFA550052B4A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D3E4C3129AEFA550052B4A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8D3E4C3329AEFA550052B4A6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8D3E4C3629AEFA550052B4A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8D3E4C3329AEFA550052B4A6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		8D3E4C3929AEFA550052B4A6 /* ios_football_app.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_football_app.xcdatamodel; sourceTree = "<group>"; };
 		8D3E4C3B29AEFA560052B4A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D3E4C3E29AEFA560052B4A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,8 +58,7 @@
 			children = (
 				8D3E4C2F29AEFA550052B4A6 /* AppDelegate.swift */,
 				8D3E4C3129AEFA550052B4A6 /* SceneDelegate.swift */,
-				8D3E4C3329AEFA550052B4A6 /* ViewController.swift */,
-				8D3E4C3529AEFA550052B4A6 /* Main.storyboard */,
+				8D3E4C3329AEFA550052B4A6 /* HomeViewController.swift */,
 				8D3E4C3B29AEFA560052B4A6 /* Assets.xcassets */,
 				8D3E4C3D29AEFA560052B4A6 /* LaunchScreen.storyboard */,
 				8D3E4C4029AEFA560052B4A6 /* Info.plist */,
@@ -130,7 +127,6 @@
 			files = (
 				8D3E4C3F29AEFA560052B4A6 /* LaunchScreen.storyboard in Resources */,
 				8D3E4C3C29AEFA560052B4A6 /* Assets.xcassets in Resources */,
-				8D3E4C3729AEFA550052B4A6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D3E4C3429AEFA550052B4A6 /* ViewController.swift in Sources */,
+				8D3E4C3429AEFA550052B4A6 /* HomeViewController.swift in Sources */,
 				8D3E4C3029AEFA550052B4A6 /* AppDelegate.swift in Sources */,
 				8D3E4C3A29AEFA550052B4A6 /* ios_football_app.xcdatamodeld in Sources */,
 				8D3E4C3229AEFA550052B4A6 /* SceneDelegate.swift in Sources */,
@@ -151,14 +147,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8D3E4C3529AEFA550052B4A6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8D3E4C3629AEFA550052B4A6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8D3E4C3D29AEFA560052B4A6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -295,7 +283,6 @@
 				INFOPLIST_FILE = "ios-football-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -322,7 +309,6 @@
 				INFOPLIST_FILE = "ios-football-app/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
