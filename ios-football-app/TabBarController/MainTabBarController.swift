@@ -23,7 +23,7 @@ final class MainTabBarController: UITabBarController {
   
   private func buildMatchesController() -> UIViewController {
     return buildController(
-      controller: MatchesController(),
+      controller: MatchListController(),
       title: "Matches",
       image: .init(systemName: "soccerball"))
   }
@@ -41,20 +41,8 @@ final class MainTabBarController: UITabBarController {
       image: image,
       selectedImage: nil)
     controller.tabBarItem = item
-    return UINavigationController(rootViewController: controller)
-  }
-}
-
-class MatchesController: UIViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    view.backgroundColor = .white
-  }
-}
-
-class TeamsController: UIViewController {
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    view.backgroundColor = .white
+    let navigationController = UINavigationController(rootViewController: controller)
+    navigationController.navigationBar.prefersLargeTitles = true
+    return navigationController
   }
 }
