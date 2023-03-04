@@ -26,9 +26,13 @@
 		8D65539F29B2256300943793 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D65539E29B2256300943793 /* TeamView.swift */; };
 		8D6553A129B2258600943793 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553A029B2258600943793 /* DateView.swift */; };
 		8D6553A329B225D500943793 /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553A229B225D500943793 /* MatchCell.swift */; };
-		8D6553A929B2273600943793 /* TeamDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553A829B2273600943793 /* TeamDetailController.swift */; };
 		8D6553AB29B2278B00943793 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553AA29B2278B00943793 /* TeamCell.swift */; };
 		8D6553AF29B2A30F00943793 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553AE29B2A30F00943793 /* UIImage+Extension.swift */; };
+		8D6553B129B2A36400943793 /* TeamDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553B029B2A36400943793 /* TeamDetailViewModel.swift */; };
+		8D6553B329B2A39E00943793 /* TeamDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553B229B2A39E00943793 /* TeamDetailDataSource.swift */; };
+		8D6553B529B2A3B900943793 /* TeamDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553B429B2A3B900943793 /* TeamDetailController.swift */; };
+		8D6553B729B2A3DB00943793 /* TeamStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553B629B2A3DB00943793 /* TeamStatsCell.swift */; };
+		8D6553B929B2A40100943793 /* TeamStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6553B829B2A40100943793 /* TeamStats.swift */; };
 		8DC5B43229AF7F3F00A1E294 /* SpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC5B43129AF7F3F00A1E294 /* SpacerView.swift */; };
 		8DC5B43529AF91AD00A1E294 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8DC5B43429AF91AD00A1E294 /* SDWebImage */; };
 /* End PBXBuildFile section */
@@ -55,9 +59,13 @@
 		8D65539E29B2256300943793 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		8D6553A029B2258600943793 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		8D6553A229B225D500943793 /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
-		8D6553A829B2273600943793 /* TeamDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailController.swift; sourceTree = "<group>"; };
 		8D6553AA29B2278B00943793 /* TeamCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		8D6553AE29B2A30F00943793 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Extension.swift"; path = "ios-football-app/UIImage+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		8D6553B029B2A36400943793 /* TeamDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailViewModel.swift; sourceTree = "<group>"; };
+		8D6553B229B2A39E00943793 /* TeamDetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailDataSource.swift; sourceTree = "<group>"; };
+		8D6553B429B2A3B900943793 /* TeamDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailController.swift; sourceTree = "<group>"; };
+		8D6553B629B2A3DB00943793 /* TeamStatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatsCell.swift; sourceTree = "<group>"; };
+		8D6553B829B2A40100943793 /* TeamStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStats.swift; sourceTree = "<group>"; };
 		8DC5B43129AF7F3F00A1E294 /* SpacerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,7 +141,6 @@
 		8D3E4C4829AF00200052B4A6 /* TeamList */ = {
 			isa = PBXGroup;
 			children = (
-				8D6553A829B2273600943793 /* TeamDetailController.swift */,
 				8D65538E29B213B700943793 /* TeamListService.swift */,
 				8D65538C29B07B2000943793 /* TeamsController.swift */,
 				8D65539C29B2252E00943793 /* TeamsResponse.swift */,
@@ -146,6 +153,11 @@
 		8D6553AC29B2A27B00943793 /* TeamDetail */ = {
 			isa = PBXGroup;
 			children = (
+				8D6553B429B2A3B900943793 /* TeamDetailController.swift */,
+				8D6553B229B2A39E00943793 /* TeamDetailDataSource.swift */,
+				8D6553B029B2A36400943793 /* TeamDetailViewModel.swift */,
+				8D6553B829B2A40100943793 /* TeamStats.swift */,
+				8D6553B629B2A3DB00943793 /* TeamStatsCell.swift */,
 			);
 			path = TeamDetail;
 			sourceTree = "<group>";
@@ -244,9 +256,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6553B929B2A40100943793 /* TeamStats.swift in Sources */,
 				8D3E4C3429AEFA550052B4A6 /* MainTabBarController.swift in Sources */,
 				8DC5B43229AF7F3F00A1E294 /* SpacerView.swift in Sources */,
 				8D3E4C3029AEFA550052B4A6 /* AppDelegate.swift in Sources */,
+				8D6553B529B2A3B900943793 /* TeamDetailController.swift in Sources */,
+				8D6553B729B2A3DB00943793 /* TeamStatsCell.swift in Sources */,
 				8D65539D29B2252E00943793 /* TeamsResponse.swift in Sources */,
 				8D3E4C3A29AEFA550052B4A6 /* ios_football_app.xcdatamodeld in Sources */,
 				8D65539729B224B400943793 /* MatchListViewModel.swift in Sources */,
@@ -260,11 +275,12 @@
 				8D65539F29B2256300943793 /* TeamView.swift in Sources */,
 				8D65538D29B07B2000943793 /* TeamsController.swift in Sources */,
 				8D3E4C4A29AF00D60052B4A6 /* MatchListController.swift in Sources */,
-				8D6553A929B2273600943793 /* TeamDetailController.swift in Sources */,
+				8D6553B129B2A36400943793 /* TeamDetailViewModel.swift in Sources */,
 				8D65539129B21BAD00943793 /* TeamsViewModel.swift in Sources */,
 				8D6553AB29B2278B00943793 /* TeamCell.swift in Sources */,
 				8D65539929B224ED00943793 /* MatchesResponse.swift in Sources */,
 				8D6553A129B2258600943793 /* DateView.swift in Sources */,
+				8D6553B329B2A39E00943793 /* TeamDetailDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
