@@ -1,0 +1,54 @@
+{
+  "teams": [
+    {
+      "id": "767ec50c-7fdb-4c3d-98f9-d6727ef8252b",
+      "logo": "https://tstzj.s3.amazonaws.com/dragons.png",
+      "name": "Team Red Dragons"
+    },
+    {
+      "id": "7b4d8114-742b-4410-971a-500162101158",
+      "logo": "https://tstzj.s3.amazonaws.com/eagle.png",
+      "name": "Team Cool Eagles"
+    },
+    {
+      "id": "efb06ca2-78bc-448e-bda5-a6af9eccdcd0",
+      "logo": "https://tstzj.s3.amazonaws.com/elephant.png",
+      "name": "Team Chill Elephants"
+    },
+    {
+      "id": "01490dfe-0bc7-42ad-b471-2fba2b9b8f5e",
+      "logo": "https://tstzj.s3.amazonaws.com/kings.png",
+      "name": "Team Win Kings"
+    },
+    {
+      "id": "849a0c56-eb8b-11ec-8ea0-0242ac120002",
+      "logo": "https://tstzj.s3.amazonaws.com/lion.png",
+      "name": "Team Serious Lions"
+    },
+    {
+      "id": "a3034ee6-eb8b-11ec-8ea0-0242ac120002",
+      "logo": "https://tstzj.s3.amazonaws.com/panda.png",
+      "name": "Team Angry Pandas"
+    },
+    {
+      "id": "dbe8e752-eb8b-11ec-8ea0-0242ac120002",
+      "logo": "https://tstzj.s3.amazonaws.com/phoenix.png",
+      "name": "Team Fiery Phoenix"
+    },
+    {
+      "id": "f784f104-eb8b-11ec-8ea0-0242ac120002",
+      "logo": "https://tstzj.s3.amazonaws.com/sharks.png",
+      "name": "Team Hungry Sharks"
+    },
+    {
+      "id": "22e4fd58-eb8c-11ec-8ea0-0242ac120002",
+      "logo": "https://tstzj.s3.amazonaws.com/tiger.png",
+      "name": "Team Growling Tigers"
+    },
+    {
+      "id": "09294c60-eb8d-11ec-8ea0-0242ac120002",
+      "logo": "https://tstzj.s3.amazonaws.com/knights.png",
+      "name": "Team Royal Knights"
+    }
+  ]
+}

@@ -29,7 +29,7 @@ final class TeamListServiceTests: XCTestCase {
     offlineTeamListService = nil
   }
   
-  func testFetchListHappyPath() {
+  func testTeams_onSuccessfulAPICall_isReturned() {
     // given
     let status: Int32 = 200
     stub(condition: isAbsoluteURLString("https://jmde6xvjr4.execute-api.us-east-1.amazonaws.com/teams")) { _ in
@@ -49,10 +49,9 @@ final class TeamListServiceTests: XCTestCase {
   
   func testOfflineTeamListService_onFailedRemoteAPICall_isCalled() {
     // given
-    let status: Int32 = 500
     stub(condition: isAbsoluteURLString("https://jmde6xvjr4.execute-api.us-east-1.amazonaws.com/teams")) { _ in
-      let stubPath = OHPathForFile("error.json", type(of: self))
-      return fixture(filePath: stubPath!, status: status, headers: ["Content-Type":"application/json"])
+      let notConnectedError = NSError(domain: NSURLErrorDomain, code: URLError.notConnectedToInternet.rawValue)
+      return HTTPStubsResponse(error: notConnectedError)
     }
     offlineTeamListService.fetchTeamsMockValue = [
       .init(id: "101", name: "Team Apple", logo: "https://image.com/apple.png"),

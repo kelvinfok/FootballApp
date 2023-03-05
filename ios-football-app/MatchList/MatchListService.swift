@@ -28,23 +28,27 @@ class MatchListService: MatchListServiceType {
       .map { $0.data }
       .decode(type: MatchesResponse.self, decoder: JSONDecoder())
       .map { $0.matches.previous + $0.matches.upcoming }
-      .replaceError(
-        with: loadOffline()
-      )
+      .catch { _ in
+        return Future<[Match], Never> { [weak self] promise in
+          self?.loadOffline { matches in
+            promise(.success(matches))
+          }
+        }
+      }
       .handleEvents(receiveOutput: { [weak self] matches in
         self?.saveOffline(matches: matches)
       })
       .eraseToAnyPublisher()
   }
   
-  private func loadOffline() -> [Match] {
-    let matches = (try? offlineMatchListService.fetchMatches()) ?? []
-    print(">>> offline matches: \(matches.count)")
-    return matches
+  private func loadOffline(completion: @escaping ([Match]) -> Void) {
+    offlineMatchListService.fetchMatches { matches in
+      completion(matches)
+    }
   }
   
   private func saveOffline(matches: [Match]) {
-    try! offlineMatchListService.deleteMatches()
-    try! offlineMatchListService.createMatches(matches: matches)
+    offlineMatchListService.deleteMatches()
+    offlineMatchListService.createMatches(matches: matches)
   }
 }

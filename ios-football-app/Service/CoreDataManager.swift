@@ -9,134 +9,129 @@ import Foundation
 import CoreData
 
 protocol OfflineMatchListServiceType {
-  func createMatches(matches: [Match]) throws
-  func fetchMatches() throws -> [Match]
-  func deleteMatches() throws
+  func createMatches(matches: [Match])
+  func fetchMatches(completion: @escaping ([Match]) -> Void)
+  func deleteMatches()
 }
 
 protocol OfflineTeamListServiceType {
-  func createTeam(team: Team) throws
-  func fetchTeams() throws -> [Team]
-  func deleteTeams() throws
+  func createTeams(teams: [Team])
+  func fetchTeams(completion: @escaping ([Team]) -> Void)
+  func deleteTeams()
 }
 
 class CoreDataManager {
   
-  enum Entity: String {
-    case match = "CDMatch"
-  }
-  
-  enum CoreDataError: Error {
-    case invalidEntity
-  }
-  
   static let shared = CoreDataManager()
   
   private let container: NSPersistentContainer
-  private var context: NSManagedObjectContext {
-    container.viewContext
-  }
-  
-  var error: Error?
   
   private init() {
     container = NSPersistentContainer(name: "ios_football_app")
-  }
-  
-  func setup() {
-    container.loadPersistentStores { [weak self] description, error in
+    container.loadPersistentStores { _, error in
       if let error = error as NSError? {
         print("core data error \(error), \(error.userInfo)")
-        self?.error = error
       }
-    }
-  }
-  
-  private func saveContext() throws {
-    if context.hasChanges {
-      try context.save()
-    }
-  }
-  
-  private func throwErrorIfNeeded() throws {
-    if let error = error {
-      throw error
     }
   }
 }
 
 extension CoreDataManager: OfflineMatchListServiceType {
   
-  func createMatches(matches: [Match]) throws {
-    try matches.forEach { match in
-      guard let entity = NSEntityDescription
-        .insertNewObject(
-          forEntityName: Entity.match.rawValue,
-          into: context) as? CDMatch
-      else { throw CoreDataError.invalidEntity }
-      entity.date = match.date
-      entity.description_ = match.description
-      entity.home = match.home
-      entity.away = match.away
-      if let winner = match.winner {
-        entity.winner = winner
+  func createMatches(matches: [Match]) {
+    container.performBackgroundTask { context in
+      for match in matches {
+        let cdMatch = CDMatch(context: context)
+        cdMatch.date = match.date
+        cdMatch.description_ = match.description
+        cdMatch.home = match.home
+        cdMatch.away = match.away
+        if let winner = match.winner {
+          cdMatch.winner = winner
+        }
+        if let highlights = match.highlights {
+          cdMatch.highlights = highlights
+        }
       }
-      if let highlights = match.highlights {
-        entity.highlights = highlights
+      if context.hasChanges {
+        try? context.save()
       }
     }
-    try saveContext()
   }
     
-  func fetchMatches() throws -> [Match] {
-    let request = NSFetchRequest<CDMatch>(entityName: Entity.match.rawValue)
-    let cdMatches: [CDMatch] = try context.fetch(request)
-    return cdMatches.map {
-      .init(date: $0.date ?? "NA",
-            description: $0.description_ ?? "NA",
-            home: $0.home ?? "NA",
-            away: $0.away ?? "NA",
-            winner: $0.winner,
-            highlights: $0.highlights)
+  func fetchMatches(completion: @escaping ([Match]) -> Void) {
+    let context = container.viewContext
+    context.perform {
+      let request: NSFetchRequest<CDMatch> = CDMatch.fetchRequest()
+        guard let cdMatches: [CDMatch] = try? context.fetch(request) else {
+          completion([])
+          return
+        }
+        let matches = cdMatches.map { match in
+          return Match(
+            date: match.date!,
+            description: match.description_!,
+            home: match.home!,
+            away: match.away!,
+            winner: match.winner,
+            highlights: match.highlights)
+        }
+        completion(matches)
     }
   }
   
-  func deleteMatches() throws {
-    let request = NSFetchRequest<CDMatch>(entityName: "CDMatch")
-    let cdMatches = try context.fetch(request)
+  func deleteMatches() {
+    let context = container.viewContext
+    let request: NSFetchRequest<CDMatch> = CDMatch.fetchRequest()
+    guard let cdMatches = try? context.fetch(request) else { return }
     cdMatches.forEach {
       context.delete($0)
     }
-    try context.save()
+    try? context.save()
   }
 }
 
 extension CoreDataManager: OfflineTeamListServiceType {
-  func createTeam(team: Team) throws {
-    let cdTeam = NSEntityDescription.insertNewObject(forEntityName: "CDTeam", into: context) as! CDTeam
-    cdTeam.name = team.name
-    cdTeam.id = team.id
-    cdTeam.logo = team.logo
-    try context.save()
-  }
   
-  func fetchTeams() throws -> [Team] {
-    let request = NSFetchRequest<CDTeam>(entityName: "CDTeam")
-    let cdTeams = try context.fetch(request)
-    return cdTeams.map {
-      .init(
-        id: $0.id ?? "NA",
-        name: $0.name ?? "NA",
-        logo: $0.logo ?? "NA")
+  func createTeams(teams: [Team]) {
+    container.performBackgroundTask { context in
+      for team in teams {
+        let cdTeam = CDTeam(context: context)
+        cdTeam.id = team.id
+        cdTeam.logo = team.logo
+        cdTeam.name = team.name
+      }
+      if context.hasChanges {
+        try? context.save()
+      }
     }
   }
   
-  func deleteTeams() throws {
-    let request = NSFetchRequest<CDTeam>(entityName: "CDTeam")
-    let cdTeams = try context.fetch(request)
+  func fetchTeams(completion: @escaping ([Team]) -> Void) {
+    let context = container.viewContext
+    context.perform {
+      let request: NSFetchRequest<CDTeam> = CDTeam.fetchRequest()
+      guard let cdTeams = try? context.fetch(request) else {
+        completion([])
+        return
+      }
+      let teams: [Team] = cdTeams.map {
+        .init(
+          id: $0.id ?? "NA",
+          name: $0.name ?? "NA",
+          logo: $0.logo ?? "NA")
+      }
+      completion(teams)
+    }
+  }
+  
+  func deleteTeams() {
+    let context = container.viewContext
+    let request: NSFetchRequest<CDTeam> = CDTeam.fetchRequest()
+    guard let cdTeams = try? context.fetch(request) else { return }
     cdTeams.forEach {
       context.delete($0)
     }
-    try context.save()
+    try? context.save()
   }
 }

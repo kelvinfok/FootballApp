@@ -26,23 +26,27 @@ class TeamListService: TeamListServiceType {
       .map { $0.data }
       .decode(type: TeamsResponse.self, decoder: JSONDecoder())
       .map { $0.teams }
-      .replaceError(with: loadOffline())
+      .catch { _ in
+        return Future<[Team], Never> { [weak self] promise in
+          self?.loadOffline { teams in
+            promise(.success(teams))
+          }
+        }.eraseToAnyPublisher()
+      }
       .handleEvents(receiveOutput: { [weak self] teams in
         self?.saveOffline(teams: teams)
       })
       .eraseToAnyPublisher()
   }
   
-  private func loadOffline() -> [Team] {
-    let teams = (try? offlineTeamListService.fetchTeams()) ?? []
-    print(">>> offline teams: \(teams.count)")
-    return teams
+  private func loadOffline(completion: @escaping ([Team]) -> Void) {
+    offlineTeamListService.fetchTeams { teams in
+      completion(teams)
+    }
   }
 
   private func saveOffline(teams: [Team]) {
-    try! offlineTeamListService.deleteTeams()
-    teams.forEach { team in
-      try! offlineTeamListService.createTeam(team: team)
-    }
+    offlineTeamListService.deleteTeams()
+    offlineTeamListService.createTeams(teams: teams)
   }
 }
