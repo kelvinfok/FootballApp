@@ -46,7 +46,9 @@ final class TeamCell: UITableViewCell {
   }
   
   func configure(team: Team) {
-    logoImageView.sd_setImage(with: URL(string: team.logo))
+    logoImageView.sd_setImage(
+      with: URL(string: team.logo),
+      placeholderImage: .init(systemName: "star.circle"))
     nameLabel.text = team.name
   }
   

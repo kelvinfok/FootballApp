@@ -45,12 +45,11 @@ class TeamDetailViewModel {
     outputSubject.send(.openVideoPlayer(url: url))
   }
   
-  private func handleMatches(matches: Matches) {
-    let all: [Match] = matches.previous + matches.upcoming
-    let wins = all.filter {
+  private func handleMatches(matches: [Match]) {
+    let wins = matches.filter {
       MatchHelper.checkResult(match: $0, team: team) == .won
     }
-    let losses = all.filter {
+    let losses = matches.filter {
       MatchHelper.checkResult(match: $0, team: team) == .lost
     }
     let stats = TeamStats(wins: wins, losses: losses)

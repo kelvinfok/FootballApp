@@ -74,12 +74,8 @@ class MatchListViewModel {
   }
   
   private func handleViewDidLoad() {
-    matchListService.fetchList().sink { [weak self] completion in
-      if case .failure = completion {
-        self?.outputSubject.send(.displayError)
-      }
-    } receiveValue: { [weak self] matches in
-      self?.matches = matches.previous + matches.upcoming
+    matchListService.fetchList().sink { [weak self] matches in
+      self?.matches = matches
     }.store(in: &cancellables)
     
     teamListService.fetchList().sink { [weak self] completion in

@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class TeamsViewModel {
+class TeamListViewModel {
   
   struct Input {
     let viewDidLoad: AnyPublisher<Void, Never>

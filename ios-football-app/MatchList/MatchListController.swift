@@ -45,11 +45,17 @@ class MatchListController: UICollectionViewController, UICollectionViewDelegateF
   enum Section {
     case main
   }
-  
-  typealias DataSource = UICollectionViewDiffableDataSource<Section, MatchCell.Model>
-  typealias Snapshot = NSDiffableDataSourceSnapshot<Section, MatchCell.Model>
-  
-  private lazy var dataSource = makeDataSource()
+    
+  private lazy var dataSource: UICollectionViewDiffableDataSource<Section, MatchCell.Model> = {
+    return .init(
+      collectionView: collectionView) { collectionView, indexPath, model in
+        let cell = collectionView.dequeueReusableCell(
+          withReuseIdentifier: MatchCell.identifier,
+          for: indexPath) as? MatchCell ?? MatchCell()
+        cell.configure(model: model)
+        return cell
+      }
+  }()
   
   private var models: [MatchCell.Model] = []
   
@@ -85,20 +91,9 @@ class MatchListController: UICollectionViewController, UICollectionViewDelegateF
   private func setupCollectionView() {
     collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.identifier)
   }
-  
-  private func makeDataSource() -> DataSource {
-    return .init(
-      collectionView: collectionView) { collectionView, indexPath, model in
-        let cell = collectionView.dequeueReusableCell(
-          withReuseIdentifier: MatchCell.identifier,
-          for: indexPath) as? MatchCell ?? MatchCell()
-        cell.configure(model: model)
-        return cell
-      }
-  }
-  
+    
   private func applySnapshot(animatingDifferences: Bool = true) {
-    var snapshot = Snapshot()
+    var snapshot = NSDiffableDataSourceSnapshot<Section, MatchCell.Model>()
     snapshot.appendSections([.main])
     snapshot.appendItems(models)
     dataSource.apply(snapshot, animatingDifferences: animatingDifferences)

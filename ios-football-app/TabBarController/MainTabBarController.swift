@@ -25,12 +25,12 @@ final class MainTabBarController: UITabBarController {
     return buildController(
       controller: MatchListController(),
       title: "Matches",
-      image: .init(systemName: "soccerball"))
+      image: .init(systemName: "sportscourt"))
   }
   
   private func buildTeamsController() -> UIViewController {
     return buildController(
-      controller: TeamsController(),
+      controller: TeamListController(),
       title: "Teams",
       image: .init(systemName: "person.3.fill"))
   }

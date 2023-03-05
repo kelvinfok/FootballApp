@@ -8,12 +8,12 @@
 import UIKit
 import Combine
 
-class TeamsController: UITableViewController {
+class TeamListController: UITableViewController {
   
   private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
   private let teamDidSelectSubject = PassthroughSubject<Team, Never>()
   
-  private let viewModel = TeamsViewModel()
+  private let viewModel = TeamListViewModel()
   private var teams: [Team] = []
   
   private var cancellables = Set<AnyCancellable>()
@@ -56,7 +56,7 @@ class TeamsController: UITableViewController {
   }
   
   private func observe() {
-    let input = TeamsViewModel.Input(
+    let input = TeamListViewModel.Input(
       viewDidLoad: viewDidLoadSubject.eraseToAnyPublisher(),
       teamDidSelect: teamDidSelectSubject.eraseToAnyPublisher())
     let output = viewModel.transform(input: input)
