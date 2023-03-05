@@ -53,8 +53,6 @@ final class MatchListViewModelTests: XCTestCase {
     // then
     output.sink { event in
       switch event {
-      case .displayError:
-        XCTFail("not expecting display error")
       case .displayMatches(let matches):
         exp.fulfill()
         XCTAssertEqual(matches.count, 1)
@@ -89,8 +87,6 @@ final class MatchListViewModelTests: XCTestCase {
     // then
     output.sink { event in
       switch event {
-      case .displayError:
-        XCTFail("not expecting display error")
       case .displayMatches:
         XCTFail("not expecting display matches")
       case .openVideoPlayer(let url):
@@ -138,8 +134,6 @@ final class MatchListViewModelTests: XCTestCase {
     // then
     output.sink { event in
       switch event {
-      case .displayError:
-        XCTFail("not expecting display error")
       case .displayMatches(let matches):
         matchesCount.append(matches.count)
         exp.fulfill()

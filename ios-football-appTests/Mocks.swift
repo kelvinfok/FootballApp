@@ -34,24 +34,19 @@ final class MatchListServiceMock: MatchListServiceType {
 final class OfflineTeamListServiceMock: OfflineTeamListServiceType {
   
   var createTeamArray: [Team] = []
-  func createTeam(team: Team) throws {
-    createTeamArray.append(team)
+  func createTeams(teams: [Team]) {
+    createTeamArray.append(contentsOf: teams)
   }
   
   var fetchTeamsMockValue: [Team]?
-  var fetchTeamsError: Error?
-  func fetchTeams() throws -> [Team] {
-    if let value = fetchTeamsMockValue {
-      return value
+  func fetchTeams(completion: @escaping ([Team]) -> Void) {
+    if let teams = fetchTeamsMockValue {
+      completion(teams)
     }
-    if let error = fetchTeamsError {
-      throw error
-    }
-    return []
   }
   
   var deleteTeamsCounter = 0
-  func deleteTeams() throws {
+  func deleteTeams() {
     deleteTeamsCounter += 1
   }
 }
