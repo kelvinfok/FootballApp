@@ -31,9 +31,7 @@ class TeamDetailViewModel {
   }
   
   func onViewDidLoad() {
-    matchService.fetchList().sink { completion in
-      
-    } receiveValue: { [weak self] matches in
+    matchService.fetchList().sink { [weak self] matches in
       self?.handleMatches(matches: matches)
     }.store(in: &cancellables)
     handleSetNavigationTitle()

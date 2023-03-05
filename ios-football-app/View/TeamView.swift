@@ -9,6 +9,16 @@ import UIKit
 
 class TeamView: UIView {
   
+  private enum Constant {
+    static let nameLabelFontSize: CGFloat = 14
+    static let stackViewSpacing: CGFloat = 4
+    static let imageViewTintColor: UIColor = .init(red: 0.9882352941, green: 0.7607843137, blue: 0, alpha: 1)
+    static let imageViewHeight: CGFloat = 24
+    static let imageViewPadding: CGFloat = 8
+    static let crownImageViewHeight: CGFloat = 24
+    static let crownImageViewCornerRadius: CGFloat = 12
+  }
+  
   private let imageView: UIImageView = {
     let imageView = UIImageView()
     imageView.contentMode = .scaleAspectFit
@@ -17,7 +27,9 @@ class TeamView: UIView {
   
   private let nameLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 14, weight: .semibold)
+    label.font = .systemFont(
+      ofSize: Constant.nameLabelFontSize,
+      weight: .semibold)
     label.numberOfLines = 2
     label.minimumScaleFactor = 0.5
     label.adjustsFontSizeToFitWidth = true
@@ -28,11 +40,11 @@ class TeamView: UIView {
   private let crownImageView: UIImageView = {
     let imageView = UIImageView()
     imageView.image = UIImage(systemName: "crown")?
-      .withTintColor(UIColor(red: 0.9882352941, green: 0.7607843137, blue: 0, alpha: 1),
+      .withTintColor(Constant.imageViewTintColor,
                      renderingMode: .alwaysTemplate)
-      .addImagePadding(x: 8, y: 8)
+      .addImagePadding(x: Constant.imageViewPadding, y: Constant.imageViewPadding)
     imageView.backgroundColor = .white
-    imageView.layer.cornerRadius = 12
+    imageView.layer.cornerRadius = Constant.crownImageViewCornerRadius
     return imageView
   }()
   
@@ -47,7 +59,7 @@ class TeamView: UIView {
       nameLabel,
       bottomSpacer
     ])
-    stackView.spacing = 4
+    stackView.spacing = Constant.stackViewSpacing
     stackView.axis = .vertical
     stackView.alignment = .center
     stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,10 +93,10 @@ class TeamView: UIView {
       stackView.topAnchor.constraint(equalTo: topAnchor),
       stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
       stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      imageView.heightAnchor.constraint(equalToConstant: 24),
+      imageView.heightAnchor.constraint(equalToConstant: Constant.imageViewHeight),
       imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
       topSpacer.heightAnchor.constraint(equalTo: bottomSpacer.heightAnchor),
-      crownImageView.heightAnchor.constraint(equalToConstant: 24),
+      crownImageView.heightAnchor.constraint(equalToConstant: Constant.crownImageViewHeight),
       crownImageView.widthAnchor.constraint(equalTo: crownImageView.heightAnchor)
     ])
   }

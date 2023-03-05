@@ -21,16 +21,15 @@ protocol OfflineTeamListServiceType {
 }
 
 class CoreDataManager {
-  
+
   static let shared = CoreDataManager()
-  
   private let container: NSPersistentContainer
   
   private init() {
     container = NSPersistentContainer(name: "ios_football_app")
     container.loadPersistentStores { _, error in
       if let error = error as NSError? {
-        print("core data error \(error), \(error.userInfo)")
+        print("core data error: \(error), \(error.userInfo)")
       }
     }
   }
@@ -69,10 +68,10 @@ extension CoreDataManager: OfflineMatchListServiceType {
         }
         let matches = cdMatches.map { match in
           return Match(
-            date: match.date!,
-            description: match.description_!,
-            home: match.home!,
-            away: match.away!,
+            date: match.date ?? "",
+            description: match.description_ ?? "",
+            home: match.home ?? "",
+            away: match.away ?? "",
             winner: match.winner,
             highlights: match.highlights)
         }
@@ -82,12 +81,14 @@ extension CoreDataManager: OfflineMatchListServiceType {
   
   func deleteMatches() {
     let context = container.viewContext
-    let request: NSFetchRequest<CDMatch> = CDMatch.fetchRequest()
-    guard let cdMatches = try? context.fetch(request) else { return }
-    cdMatches.forEach {
-      context.delete($0)
+    context.perform {
+      let request: NSFetchRequest<CDMatch> = CDMatch.fetchRequest()
+      guard let cdMatches = try? context.fetch(request) else { return }
+      cdMatches.forEach {
+        context.delete($0)
+      }
+      try? context.save()
     }
-    try? context.save()
   }
 }
 
@@ -117,9 +118,9 @@ extension CoreDataManager: OfflineTeamListServiceType {
       }
       let teams: [Team] = cdTeams.map {
         .init(
-          id: $0.id ?? "NA",
-          name: $0.name ?? "NA",
-          logo: $0.logo ?? "NA")
+          id: $0.id ?? "",
+          name: $0.name ?? "",
+          logo: $0.logo ?? "")
       }
       completion(teams)
     }
@@ -127,11 +128,13 @@ extension CoreDataManager: OfflineTeamListServiceType {
   
   func deleteTeams() {
     let context = container.viewContext
-    let request: NSFetchRequest<CDTeam> = CDTeam.fetchRequest()
-    guard let cdTeams = try? context.fetch(request) else { return }
-    cdTeams.forEach {
-      context.delete($0)
+    context.perform {
+      let request: NSFetchRequest<CDTeam> = CDTeam.fetchRequest()
+      guard let cdTeams = try? context.fetch(request) else { return }
+      cdTeams.forEach {
+        context.delete($0)
+      }
+      try? context.save()
     }
-    try? context.save()
   }
 }

@@ -19,7 +19,6 @@ class MatchListViewModel {
   
   enum Output {
     case displayMatches([MatchCell.Model])
-    case displayError
     case openVideoPlayer(url: URL)
   }
   
@@ -78,11 +77,7 @@ class MatchListViewModel {
       self?.matches = matches
     }.store(in: &cancellables)
     
-    teamListService.fetchList().sink { [weak self] completion in
-      if case .failure = completion {
-        self?.outputSubject.send(.displayError)
-      }
-    } receiveValue: { [weak self] teams in
+    teamListService.fetchList().sink { [weak self] teams in
       self?.teams = teams
     }.store(in: &cancellables)
   }

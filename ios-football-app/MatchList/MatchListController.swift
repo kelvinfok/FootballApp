@@ -12,14 +12,8 @@ import AVKit
 
 class MatchListController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
   
-  init() {
-    let layout = UICollectionViewFlowLayout()
-    layout.minimumLineSpacing = 8
-    super.init(collectionViewLayout: layout)
-  }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+  private enum Constant {
+    static let sectionHorizontalPadding: CGFloat = 32
   }
   
   private lazy var searchController: UISearchController = {
@@ -58,6 +52,16 @@ class MatchListController: UICollectionViewController, UICollectionViewDelegateF
   }()
   
   private var models: [MatchCell.Model] = []
+  
+  init() {
+    let layout = UICollectionViewFlowLayout()
+    layout.minimumLineSpacing = 8
+    super.init(collectionViewLayout: layout)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   override func loadView() {
     super.loadView()
@@ -107,8 +111,6 @@ class MatchListController: UICollectionViewController, UICollectionViewDelegateF
         case .displayMatches(let models):
           self?.models = models
           self?.applySnapshot()
-        case .displayError:
-          break
         case .openVideoPlayer(let url):
           self?.handleOpenVideoPlayer(url: url)
         }
@@ -130,7 +132,7 @@ class MatchListController: UICollectionViewController, UICollectionViewDelegateF
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return .init(width: collectionView.frame.width - 32, height: 148)
+    return .init(width: collectionView.frame.width - Constant.sectionHorizontalPadding, height: MatchCell.heightForView())
   }
 }
 

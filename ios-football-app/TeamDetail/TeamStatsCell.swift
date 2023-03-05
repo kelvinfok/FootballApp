@@ -8,24 +8,39 @@
 import UIKit
 
 class TeamStatsCell: UITableViewCell {
+  
+  private enum Constant {
+    static let descriptionLabelFontSize: CGFloat = 16
+    static let dateLabelFontSize: CGFloat = 12
+    static let resultLabelFontSize: CGFloat = 12
+    static let stackViewSpacing: CGFloat = 8
+    static let padding: CGFloat = 16
+  }
+  
   static let identifier = String(describing: TeamStatsCell.self)
   
   private let descriptionLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 16, weight: .light)
+    label.font = .systemFont(
+      ofSize: Constant.descriptionLabelFontSize,
+      weight: .light)
     return label
   }()
   
   private let dateLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 12, weight: .regular)
+    label.font = .systemFont(
+      ofSize: Constant.dateLabelFontSize,
+      weight: .regular)
     label.textColor = .gray
     return label
   }()
   
   private let resultLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 12, weight: .bold)
+    label.font = .systemFont(
+      ofSize: Constant.resultLabelFontSize,
+      weight: .bold)
     label.textColor = .darkText
     return label
   }()
@@ -36,7 +51,7 @@ class TeamStatsCell: UITableViewCell {
       dateLabel,
       resultLabel
     ])
-    stackView.spacing = 8
+    stackView.spacing = Constant.stackViewSpacing
     stackView.axis = .vertical
     stackView.translatesAutoresizingMaskIntoConstraints = false
     return stackView
@@ -64,10 +79,10 @@ class TeamStatsCell: UITableViewCell {
   private func layout() {
     contentView.addSubview(stackView)
     NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-      stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-      stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-      stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+      stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constant.padding),
+      stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.padding),
+      stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constant.padding),
+      stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constant.padding)
     ])
   }
 }

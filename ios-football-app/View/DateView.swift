@@ -9,16 +9,26 @@ import UIKit
 
 class DateView: UIView {
   
+  private enum Constant {
+    static let dateLabelFontSize: CGFloat = 14
+    static let timeLabelFontSize: CGFloat = 12
+    static let stackViewSpacing: CGFloat = 4
+  }
+  
   private let dateLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 14, weight: .bold)
+    label.font = .systemFont(
+      ofSize: Constant.dateLabelFontSize,
+      weight: .bold)
     label.textAlignment = .center
     return label
   }()
   
   private let timeLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 12, weight: .regular)
+    label.font = .systemFont(
+      ofSize: Constant.timeLabelFontSize,
+      weight: .regular)
     label.textColor = .gray
     label.textAlignment = .center
     return label
@@ -36,7 +46,7 @@ class DateView: UIView {
     ])
     stackView.axis = .vertical
     stackView.alignment = .center
-    stackView.spacing = 4
+    stackView.spacing = Constant.stackViewSpacing
     stackView.translatesAutoresizingMaskIntoConstraints = false
     return stackView
   }()

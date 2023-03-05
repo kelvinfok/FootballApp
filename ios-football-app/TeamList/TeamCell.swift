@@ -9,6 +9,13 @@ import UIKit
 
 final class TeamCell: UITableViewCell {
   
+  private enum Constant {
+    static let nameLabelFontSize: CGFloat = 18
+    static let stackViewSpacing: CGFloat = 16
+    static let padding: CGFloat = 16
+    static let logoImageViewHeight: CGFloat = 56
+  }
+  
   static let identifier = String(describing: TeamCell.self)
   
   private let logoImageView: UIImageView = {
@@ -19,7 +26,7 @@ final class TeamCell: UITableViewCell {
   
   private let nameLabel: UILabel = {
     let label = UILabel()
-    label.font = .systemFont(ofSize: 18, weight: .semibold)
+    label.font = .systemFont(ofSize: Constant.nameLabelFontSize, weight: .semibold)
     label.textAlignment = .center
     return label
   }()
@@ -31,7 +38,7 @@ final class TeamCell: UITableViewCell {
     ])
     stackView.axis = .vertical
     stackView.alignment = .center
-    stackView.spacing = 16
+    stackView.spacing = Constant.stackViewSpacing
     stackView.translatesAutoresizingMaskIntoConstraints = false
     return stackView
   }()
@@ -55,11 +62,11 @@ final class TeamCell: UITableViewCell {
   private func layout() {
     contentView.addSubview(stackView)
     NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-      stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-      stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-      stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-      logoImageView.heightAnchor.constraint(equalToConstant: 56),
+      stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constant.padding),
+      stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constant.padding),
+      stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constant.padding),
+      stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constant.padding),
+      logoImageView.heightAnchor.constraint(equalToConstant: Constant.logoImageViewHeight),
       logoImageView.widthAnchor.constraint(equalTo: logoImageView.heightAnchor)
     ])
   }

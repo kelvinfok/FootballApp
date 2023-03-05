@@ -13,6 +13,7 @@ class MatchCell: UICollectionViewCell {
 
   private enum Constant {
     static let padding: CGFloat = 16
+    static let cornerRadius: CGFloat = 8
   }
   
   struct Model: Hashable {
@@ -24,28 +25,15 @@ class MatchCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     layout()
-    contentView.backgroundColor = .systemGray6
-    contentView.layer.cornerRadius = 8
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  private let homeTeamView: TeamView = {
-    let view = TeamView()
-    return view
-  }()
-  
-  private let awayTeamView: TeamView = {
-    let view = TeamView()
-    return view
-  }()
-  
-  private let dateView: DateView = {
-    let view = DateView()
-    return view
-  }()
+  private let homeTeamView = TeamView()
+  private let awayTeamView = TeamView()
+  private let dateView = DateView()
   
   private lazy var stackView: UIStackView = {
     let stackView = UIStackView(arrangedSubviews: [
@@ -61,6 +49,8 @@ class MatchCell: UICollectionViewCell {
   }()
   
   private func layout() {
+    contentView.backgroundColor = .systemGray6
+    contentView.layer.cornerRadius = Constant.cornerRadius
     contentView.addSubview(stackView)
     NSLayoutConstraint.activate([
       stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constant.padding),
@@ -75,5 +65,9 @@ class MatchCell: UICollectionViewCell {
     let winner = MatchHelper.checkWinner(match: model.match)
     homeTeamView.configure(name: model.match.home, imageURL: model.homeTeamImageURL, isWinner: winner == .home)
     awayTeamView.configure(name: model.match.away, imageURL: model.awayTeamImageURL, isWinner: winner == .away)
+  }
+  
+  class func heightForView() -> CGFloat {
+    return 148
   }
 }
