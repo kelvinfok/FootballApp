@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		8D13CDCF29B2E20D004E689D /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D13CDCE29B2E20D004E689D /* CoreDataManager.swift */; };
+		8D23399529B48AED00DC484E /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D23399429B48AED00DC484E /* Mocks.swift */; };
+		8D23399729B48D3700DC484E /* MatchListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D23399629B48D3700DC484E /* MatchListViewModelTests.swift */; };
+		8D23399929B492DB00DC484E /* TeamListServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D23399829B492DB00DC484E /* TeamListServiceTests.swift */; };
+		8D23399C29B493FE00DC484E /* OHHTTPStubs in Frameworks */ = {isa = PBXBuildFile; productRef = 8D23399B29B493FE00DC484E /* OHHTTPStubs */; };
+		8D23399E29B4955000DC484E /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8D23399D29B4955000DC484E /* OHHTTPStubsSwift */; };
+		8D2339A229B495C000DC484E /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D2339A029B495C000DC484E /* teams.json */; };
+		8D2339A329B495C000DC484E /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D2339A129B495C000DC484E /* matches.json */; };
+		8D2339A529B497AD00DC484E /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 8D2339A429B497AD00DC484E /* error.json */; };
 		8D34121A29B2DB4B00CE90AA /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D34121929B2DB4B00CE90AA /* UIImage+Extension.swift */; };
 		8D3E4C3029AEFA550052B4A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E4C2F29AEFA550052B4A6 /* AppDelegate.swift */; };
 		8D3E4C3229AEFA550052B4A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3E4C3129AEFA550052B4A6 /* SceneDelegate.swift */; };
@@ -54,6 +62,12 @@
 
 /* Begin PBXFileReference section */
 		8D13CDCE29B2E20D004E689D /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		8D23399429B48AED00DC484E /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		8D23399629B48D3700DC484E /* MatchListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListViewModelTests.swift; sourceTree = "<group>"; };
+		8D23399829B492DB00DC484E /* TeamListServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListServiceTests.swift; sourceTree = "<group>"; };
+		8D2339A029B495C000DC484E /* teams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teams.json; sourceTree = "<group>"; };
+		8D2339A129B495C000DC484E /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
+		8D2339A429B497AD00DC484E /* error.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		8D34121929B2DB4B00CE90AA /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		8D3E4C2C29AEFA550052B4A6 /* ios-football-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-football-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3E4C2F29AEFA550052B4A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +116,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D4FF1C129B3273D0062FE64 /* SDWebImage in Frameworks */,
+				8D23399E29B4955000DC484E /* OHHTTPStubsSwift in Frameworks */,
+				8D23399C29B493FE00DC484E /* OHHTTPStubs in Frameworks */,
 				8DCD28EE29B326C000EE4015 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,6 +131,16 @@
 				8D13CDCE29B2E20D004E689D /* CoreDataManager.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		8D23399F29B4956A00DC484E /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				8D2339A129B495C000DC484E /* matches.json */,
+				8D2339A029B495C000DC484E /* teams.json */,
+				8D2339A429B497AD00DC484E /* error.json */,
+			);
+			path = Json;
 			sourceTree = "<group>";
 		};
 		8D34121829B2DB4B00CE90AA /* Extensions */ = {
@@ -239,8 +265,12 @@
 		8DCD28DF29B3260400EE4015 /* ios-football-appTests */ = {
 			isa = PBXGroup;
 			children = (
-				8DCD28E029B3260400EE4015 /* TeamListViewModelTests.swift */,
+				8D23399F29B4956A00DC484E /* Json */,
+				8D23399429B48AED00DC484E /* Mocks.swift */,
+				8D23399629B48D3700DC484E /* MatchListViewModelTests.swift */,
 				8DCD28E729B3261A00EE4015 /* SnapshotTests.swift */,
+				8DCD28E029B3260400EE4015 /* TeamListViewModelTests.swift */,
+				8D23399829B492DB00DC484E /* TeamListServiceTests.swift */,
 			);
 			path = "ios-football-appTests";
 			sourceTree = "<group>";
@@ -292,6 +322,8 @@
 			packageProductDependencies = (
 				8DCD28ED29B326C000EE4015 /* SnapshotTesting */,
 				8D4FF1C029B3273D0062FE64 /* SDWebImage */,
+				8D23399B29B493FE00DC484E /* OHHTTPStubs */,
+				8D23399D29B4955000DC484E /* OHHTTPStubsSwift */,
 			);
 			productName = "ios-football-appTests";
 			productReference = 8DCD28DE29B3260400EE4015 /* ios-football-appTests.xctest */;
@@ -328,6 +360,7 @@
 			packageReferences = (
 				8DC5B43329AF91AD00A1E294 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				8DCD28E929B3265500EE4015 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				8D23399A29B493FE00DC484E /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
 			);
 			productRefGroup = 8D3E4C2D29AEFA550052B4A6 /* Products */;
 			projectDirPath = "";
@@ -353,6 +386,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D2339A529B497AD00DC484E /* error.json in Resources */,
+				8D2339A229B495C000DC484E /* teams.json in Resources */,
+				8D2339A329B495C000DC484E /* matches.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +432,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D23399929B492DB00DC484E /* TeamListServiceTests.swift in Sources */,
+				8D23399729B48D3700DC484E /* MatchListViewModelTests.swift in Sources */,
 				8DCD28E129B3260400EE4015 /* TeamListViewModelTests.swift in Sources */,
+				8D23399529B48AED00DC484E /* Mocks.swift in Sources */,
 				8DCD28E829B3261A00EE4015 /* SnapshotTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +695,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8D23399A29B493FE00DC484E /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 9.1.0;
+			};
+		};
 		8DC5B43329AF91AD00A1E294 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
@@ -675,6 +722,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8D23399B29B493FE00DC484E /* OHHTTPStubs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D23399A29B493FE00DC484E /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubs;
+		};
+		8D23399D29B4955000DC484E /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D23399A29B493FE00DC484E /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
 		8D4FF1C029B3273D0062FE64 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8DC5B43329AF91AD00A1E294 /* XCRemoteSwiftPackageReference "SDWebImage" */;

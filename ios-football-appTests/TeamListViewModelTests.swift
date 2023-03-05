@@ -53,6 +53,21 @@ final class TeamListViewModelTests: XCTestCase {
     wait(for: [exp], timeout: 0.1)
   }
   
+  func testShowTeamDetail_onTeamSelect_isCalled() {
+    // given
+    let output = buildOutput()
+    let exp = XCTestExpectation(description: "showTeamDetail to be called")
+    let team: Team = .init(id: "1", name: "Team Angry Bird", logo: "")
+    // then
+    output.showTeamDetail.sink { selected in
+      exp.fulfill()
+      XCTAssertEqual(selected, team)
+    }.store(in: &cancellables)
+    // when
+    teamDidSelectEvent.send(team)
+    wait(for: [exp], timeout: 0.1)
+  }
+  
   private func buildOutput() -> TeamListViewModel.Output {
     let input = TeamListViewModel.Input(
       viewDidLoad: viewDidLoadEvent.eraseToAnyPublisher(),
@@ -60,17 +75,5 @@ final class TeamListViewModelTests: XCTestCase {
     let output = sut.transform(input: input)
     return output
   }
-  
-  
 }
 
-final class TeamListServiceMock: TeamListServiceType {
-  var fetchListMockValue: [Team]?
-  func fetchList() -> AnyPublisher<[Team], Never> {
-    if let team = fetchListMockValue {
-      return Just(team).eraseToAnyPublisher()
-    } else {
-      return Empty().eraseToAnyPublisher()
-    }
-  }
-}

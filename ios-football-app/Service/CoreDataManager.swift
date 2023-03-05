@@ -90,14 +90,14 @@ extension CoreDataManager: OfflineMatchListServiceType {
     
   func fetchMatches() throws -> [Match] {
     let request = NSFetchRequest<CDMatch>(entityName: Entity.match.rawValue)
-    let cdMatches = try context.fetch(request)
+    let cdMatches: [CDMatch] = try context.fetch(request)
     return cdMatches.map {
       .init(date: $0.date ?? "NA",
             description: $0.description_ ?? "NA",
             home: $0.home ?? "NA",
             away: $0.away ?? "NA",
-            winner: $0.winner ?? "NA",
-            highlights: $0.highlights ?? "NA")
+            winner: $0.winner,
+            highlights: $0.highlights)
     }
   }
   
